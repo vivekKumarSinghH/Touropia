@@ -7,7 +7,8 @@ TourOpia is the website to get information about famous tourist spots,here you c
 https://touropiac.netlify.app/
 
 
-
+## Video explaination
+https://www.youtube.com/watch?v=uhfb-yOOClU
 
 
 ## Tech Stack
