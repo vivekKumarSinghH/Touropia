@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 const API = axios.create({
-  baseURL: `https://touropia.herokuapp.com/`,
+  baseURL: `https://touropia.onrender.com/`,
 });
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("profile")) {
