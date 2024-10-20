@@ -1,5 +1,11 @@
 import React, { useEffect } from "react";
-import { MDBCol, MDBContainer, MDBRow, MDBTypography } from "mdb-react-ui-kit";
+import {
+  MDBCard,
+  MDBCol,
+  MDBContainer,
+  MDBRow,
+  MDBTypography,
+} from "mdb-react-ui-kit";
 import { useDispatch, useSelector } from "react-redux";
 import { getTours, setCurrentPage } from "../redux/features/tourSlice";
 import CardTour from "../components/CardTour";
@@ -28,13 +34,17 @@ const Home = () => {
   }, [currentPage]);
 
   if (loading) {
-    return <Spinner />;
+    return (
+      <MDBCard className="loader-center">
+        <Spinner />
+      </MDBCard>
+    );
   }
   return (
     <div
       style={{
         margin: "auto",
-        marginTop:"30px",
+        marginTop: "30px",
         padding: "15px",
         maxWidth: "1000px",
         alignContent: "center",

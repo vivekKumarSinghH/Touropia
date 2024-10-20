@@ -29,7 +29,11 @@ const TagTours = () => {
   }, [tag]);
 
   if (loading) {
-    return <Spinner />;
+    return (
+      <MDBCard className="loader-center">
+        <Spinner />
+      </MDBCard>
+    );
   }
   const excerpt = (str) => {
     if (str.length > 25) {

@@ -39,7 +39,11 @@ const Dashboard = () => {
   };
 
   if (loading) {
-    return <Spinner />;
+    return (
+      <MDBCard className="loader-center">
+        <Spinner />
+      </MDBCard>
+    );
   }
 
   const handleDelete = (id) => {
@@ -104,7 +108,7 @@ const Dashboard = () => {
                           icon="trash"
                           style={{ color: "#dd4b39" }}
                           size="lg"
-                          onClick={()=>handleDelete(item._id)}
+                          onClick={() => handleDelete(item._id)}
                         />
                       </MDBBtn>
                       <Link to={`/editTour/${item._id}`}>

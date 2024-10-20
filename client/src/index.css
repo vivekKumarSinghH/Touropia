@@ -70,3 +70,12 @@ h4:after {
   left: 0.5em;
   margin-right: -50%;
 }
+.capitalize{
+  text-transform: capitalize;
+}
+.loader-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
