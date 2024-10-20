@@ -6,12 +6,14 @@ import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import reportWebVitals from "./reportWebVitals";
-
+import { GoogleOAuthProvider } from "@react-oauth/google";
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <GoogleOAuthProvider clientId="996424289970-9b2r3hcojmeassaf51o1tphlteia8kjv.apps.googleusercontent.com">
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </GoogleOAuthProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -12,18 +12,19 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import {  googleSignIn, login } from "../redux/features/authSlice";
-import { GoogleLogin } from "react-google-login";
+import { googleSignIn, login } from "../redux/features/authSlice";
+// import { GoogleLogin } from "react-google-login";
+import { GoogleLogin } from "@react-oauth/google";
+import jwt_decode from "jwt-decode";
 
 const initialState = {
-  email: "",
-  password: "",
+  email: "demouser@gmail.com",
+  password: "Test@123",
 };
 
 const Login = () => {
   const [formValue, setFormValue] = useState(initialState);
   const { loading, error } = useSelector((state) => ({ ...state.auth }));
-  
   const { email, password } = formValue;
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -43,19 +44,18 @@ const Login = () => {
     setFormValue({ ...formValue, [name]: value });
   };
 
+  const googleSuccess = (credentialResponse) => {
+    console.log(credentialResponse);
+    const decoded = jwt_decode(credentialResponse.credential); // Decode the JWT token to get the user info
+    const email = decoded?.email;
+    const name = decoded?.name;
+    const token = credentialResponse.credential;
+    const googleId = decoded?.sub; // Use `sub` as a unique identifier for Google user
 
-  
-  
-
-  const googleSuccess = (resp) => {
-    console.log(resp)
-    const email = resp?.profileObj?.email;
-    const name = resp?.profileObj?.name;
-    const token = resp?.tokenId;
-    const googleId = resp?.googleId;
     const result = { email, name, token, googleId };
     dispatch(googleSignIn({ result, navigate, toast }));
   };
+
   const googleFailure = (error) => {
     toast.error(error);
   };
@@ -114,8 +114,6 @@ const Login = () => {
           </MDBValidation>
           <br />
           <GoogleLogin
-            clientId="212378076371-3crsj9gh1igtub6ltlu6hfv7cl4n1opc.apps.googleusercontent.com"
-            
             render={(renderProps) => (
               <MDBBtn
                 style={{ width: "100%" }}
