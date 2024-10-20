@@ -60,7 +60,7 @@ export default function Header() {
             href="/"
             style={{ color: "#606080", fontWeight: "600", fontSize: "32px" }}
           >
-            <span>tour</span> <span style={{ color: "#97C4B8" }}>Opia</span>
+            <span>Tour</span> <span style={{ color: "#97C4B8" }}>Opia</span>
           </MDBNavbarBrand>
 
           <MDBNavbarToggler
