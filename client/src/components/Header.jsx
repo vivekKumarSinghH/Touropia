@@ -9,27 +9,25 @@ import {
   MDBCollapse,
   MDBNavbarBrand,
 } from "mdb-react-ui-kit";
-import { Link ,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setLogout } from "../redux/features/authSlice";
 import { searchTours } from "../redux/features/tourSlice";
 import decode from "jwt-decode";
 export default function Header() {
   const [show, setShow] = useState(false);
-  const [search,setSearch]=useState("")
+  const [search, setSearch] = useState("");
   const s = {
     color: "#606080",
-    margin: "20px"
+    margin: "20px",
   };
   const x = {
-    
-    margin: "20px 0 20px 0"
+    margin: "20px 0 20px 0",
   };
-  
-  const dispatch=useDispatch()
-  const navigate=useNavigate()
-  const { user } = useSelector((state) => ( state.auth ));
- 
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
 
   const token = user?.token;
 
@@ -40,20 +38,20 @@ export default function Header() {
       dispatch(setLogout());
     }
   }
- const handleLogout=()=>{
-  dispatch(setLogout());
- }
- 
- const handleSubmit = (e) => {
-  e.preventDefault();
-  if (search) {
-    dispatch(searchTours(search));
-    navigate(`/tours/search?searchQuery=${search}`);
-    setSearch("");
-  } else {
-    navigate("/");
-  }
-};
+  const handleLogout = () => {
+    dispatch(setLogout());
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (search) {
+      dispatch(searchTours(search));
+      navigate(`/tours/search?searchQuery=${search}`);
+      setSearch("");
+    } else {
+      navigate("/");
+    }
+  };
   return (
     <div>
       <MDBNavbar fixed="top" expand="lg" style={{ backgroundColor: "#E4D1B9" }}>
@@ -62,7 +60,7 @@ export default function Header() {
             href="/"
             style={{ color: "#606080", fontWeight: "600", fontSize: "32px" }}
           >
-            <span >tour</span> <span style={{color:"#97C4B8"}}>Opia</span>
+            <span>tour</span> <span style={{ color: "#97C4B8" }}>Opia</span>
           </MDBNavbarBrand>
 
           <MDBNavbarToggler
@@ -77,66 +75,60 @@ export default function Header() {
 
           <MDBCollapse show={show} navbar>
             <MDBNavbarNav right fullWidth={false} className="mb-2 mb-lg-0 ">
-            <MDBNavbarItem style={x}>
-            {user?.result?._id && (
-             
-              <Link to="/" style={s}>
-           
-              Logged in as: {user?.result?.name}
-        
-                </Link>
-            )}
-            
-            </MDBNavbarItem>
-            <MDBNavbarItem style={x}>
+              <MDBNavbarItem style={x}>
+                {user?.result?._id && (
+                  <Link to="/" style={s}>
+                    Logged in as: {user?.result?.name}
+                  </Link>
+                )}
+              </MDBNavbarItem>
+              <MDBNavbarItem style={x}>
                 <Link to="/" style={s}>
                   Home
                 </Link>
               </MDBNavbarItem>
               {user?.result?._id && (
                 <>
-              <MDBNavbarItem style={x}>
-                <Link to="/addtour" style={s}>
-                  Add Tour
-                </Link>
-              </MDBNavbarItem>
+                  <MDBNavbarItem style={x}>
+                    <Link to="/addtour" style={s}>
+                      Add Tour
+                    </Link>
+                  </MDBNavbarItem>
 
-              <MDBNavbarItem style={x}>
-                <Link to="/dashboard" style={s}>
-                  DashBoard
-                </Link>
-              </MDBNavbarItem>
-              </>
+                  <MDBNavbarItem style={x}>
+                    <Link to="/dashboard" style={s}>
+                      Dashboard
+                    </Link>
+                  </MDBNavbarItem>
+                </>
               )}
 
-              
-            {user?.result?._id ? (
-              <MDBNavbarItem style={x}>
-                <Link to="/login" style={s} onClick={handleLogout}>
-                  Logout
-                </Link>
-              </MDBNavbarItem>):
-(
-              <MDBNavbarItem style={x}>
-                <Link to="/login" style={s}>
-                  Login
-                </Link>
-              </MDBNavbarItem>
-
+              {user?.result?._id ? (
+                <MDBNavbarItem style={x}>
+                  <Link to="/login" style={s} onClick={handleLogout}>
+                    Logout
+                  </Link>
+                </MDBNavbarItem>
+              ) : (
+                <MDBNavbarItem style={x}>
+                  <Link to="/login" style={s}>
+                    Login
+                  </Link>
+                </MDBNavbarItem>
               )}
             </MDBNavbarNav>
             <form className="d-flex input-group w-auto" onSubmit={handleSubmit}>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Search Tour"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-            <div style={{ marginTop: "5px", marginLeft: "5px" }}>
-              <MDBIcon fas icon="search" />
-            </div>
-          </form>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Search Tour"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <div style={{ marginTop: "5px", marginLeft: "5px" }}>
+                <MDBIcon fas icon="search" />
+              </div>
+            </form>
           </MDBCollapse>
         </MDBContainer>
       </MDBNavbar>

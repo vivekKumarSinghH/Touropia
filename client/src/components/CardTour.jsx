@@ -34,69 +34,73 @@ const CardTour = ({
     return str;
   };
 
-//   const Likes = () => {
-//     if (likes.length > 0) {
-//       return likes.find((like) => like === userId) ? (
-//         <>
-//           <MDBIcon fas icon="thumbs-up" />
-//           &nbsp;
-//           {likes.length > 2 ? (
-//             <MDBTooltip
-//               tag="a"
-//               title={`You and ${likes.length - 1} other people likes`}
-//             >
-//               {likes.length} Likes
-//             </MDBTooltip>
-//           ) : (
-//             `${likes.length} Like${likes.length > 1 ? "s" : ""}`
-//           )}
-//         </>
-//       ) : (
-//         <>
-//           <MDBIcon far icon="thumbs-up" />
-//           &nbsp;{likes.length} {likes.length === 1 ? "Like" : "Likes"}
-//         </>
-//       );
-//     }
-//     return (
-//       <>
-//         <MDBIcon far icon="thumbs-up" />
-//         &nbsp;Like
-//       </>
-//     );
-//   };
+  //   const Likes = () => {
+  //     if (likes.length > 0) {
+  //       return likes.find((like) => like === userId) ? (
+  //         <>
+  //           <MDBIcon fas icon="thumbs-up" />
+  //           &nbsp;
+  //           {likes.length > 2 ? (
+  //             <MDBTooltip
+  //               tag="a"
+  //               title={`You and ${likes.length - 1} other people likes`}
+  //             >
+  //               {likes.length} Likes
+  //             </MDBTooltip>
+  //           ) : (
+  //             `${likes.length} Like${likes.length > 1 ? "s" : ""}`
+  //           )}
+  //         </>
+  //       ) : (
+  //         <>
+  //           <MDBIcon far icon="thumbs-up" />
+  //           &nbsp;{likes.length} {likes.length === 1 ? "Like" : "Likes"}
+  //         </>
+  //       );
+  //     }
+  //     return (
+  //       <>
+  //         <MDBIcon far icon="thumbs-up" />
+  //         &nbsp;Like
+  //       </>
+  //     );
+  //   };
 
-//   const handleLike = () => {
-//     dispatch(likeTour({ _id }));
-//   };
+  //   const handleLike = () => {
+  //     dispatch(likeTour({ _id }));
+  //   };
 
-  return (<>
-    <MDBCardGroup >
-      <MDBCard className="h-100 mt-2 d-sm-flex" style={{ maxWidth: "20rem" }}>
-        <MDBCardImage
-          src={imageFile}
-          alt={title}
-          position="top"
-          style={{ maxWidth: "100%", height: "180px" }}
-        />
-        <div className="top-left">{name}</div>
-        <span className="text-start tag-card">
-          {tags.map((tag) => (
-            <Link key={_id+Math.random(1)} to={`/tours/tag/${tag}`} > #{tag}</Link>
-          ))}
-        
-        </span>
-        <MDBCardBody>
-          <MDBCardTitle className="text-start">{title}</MDBCardTitle>
-          <MDBCardText className="text-start">
-            {excerpt(description)}
-            
-            <Link to={`/tour/${_id}`} >  Read More </Link>
-          
-          </MDBCardText>
-        </MDBCardBody>
-      </MDBCard>
-    </MDBCardGroup>
+  return (
+    <>
+      <MDBCardGroup>
+        <MDBCard className="h-100 mt-2 d-sm-flex" style={{ maxWidth: "20rem" }}>
+          <MDBCardImage
+            src={imageFile}
+            alt={title}
+            position="top"
+            style={{ maxWidth: "100%", height: "180px" }}
+          />
+          <div className="top-left capitalize">{name}</div>
+          <span className="text-start tag-card">
+            {tags.map((tag) => (
+              <Link key={_id + Math.random(1)} to={`/tours/tag/${tag}`}>
+                {" "}
+                #{tag}
+              </Link>
+            ))}
+          </span>
+          <MDBCardBody>
+            <MDBCardTitle className="text-start capitalize">
+              {title}
+            </MDBCardTitle>
+            <MDBCardText className="text-start">
+              {excerpt(description)}
+
+              <Link to={`/tour/${_id}`}> Read More </Link>
+            </MDBCardText>
+          </MDBCardBody>
+        </MDBCard>
+      </MDBCardGroup>
     </>
   );
 };
